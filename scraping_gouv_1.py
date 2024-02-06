@@ -24,4 +24,3 @@ with open('listeGouvernement.csv', 'w', encoding='UTF8') as f:
         writer.writerow([name, function])
 
         print(f'Nom: {name}, Fonction: {function}')
-
