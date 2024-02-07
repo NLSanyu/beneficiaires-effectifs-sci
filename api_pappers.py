@@ -1,16 +1,40 @@
+"""
+Un script pour la recherche des données des
+bénéficiaires effectifs avec l'API Pappers
+"""
+
 import os
 import json
 import requests
 from dotenv import load_dotenv
 
 load_dotenv()
+
 PAPPERS_API_KEY = os.getenv("PAPPERS_API_KEY")
-url = f"https://api.pappers.fr/v2/entreprise?api_token={PAPPERS_API_KEY}&siren=444979314"
+PAPPERS_BASE_URL = "https://api.pappers.fr/v2"
 
+def fetch_data_entreprises():
+    """Recherche d'une entreprise"""
 
-response = requests.request("GET", url, timeout=10)
+    siren = "444979314" # exemple d'un numéro SIREN pour la recherche
+    url = f"{PAPPERS_BASE_URL}/entreprise?api_token={PAPPERS_API_KEY}&siren={siren}"
+    response = requests.request("GET", url, timeout=10)
+    print(response.json())
 
-print(response.json())
+    with open('data/api_pappers_entreprises.json', 'w', encoding='utf-16') as f:
+        json.dump(response.json(), f)
 
-with open('data.json', 'w', encoding='utf-8') as f:
-    json.dump(response.json(), f)
+def fetch_data_beneficiaires_effectifs():
+    """Recherche d'un(e) bénéficiaire effectif"""
+
+    nom = "Xavier Niel" # exemple d'un nom pour la recherche
+    url = f"{PAPPERS_BASE_URL}/recherche-beneficiaires?api_token={PAPPERS_API_KEY}&q={nom}"
+    response = requests.request("GET", url, timeout=10)
+    print(response.json())
+
+    with open('data/api_pappers_beneficiaire_effectif.json', 'w', encoding='utf-16') as f:
+        json.dump(response.json(), f)
+
+if __name__ == "__main__":
+    fetch_data_entreprises()
+    fetch_data_beneficiaires_effectifs()
