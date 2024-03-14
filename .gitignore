@@ -61,3 +61,6 @@ ENV/
 
 # Log files
 *.log
+
+# RNE data files
+data/rne_*
