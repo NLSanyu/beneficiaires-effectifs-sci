@@ -21,7 +21,7 @@ import geopy
 import pandas as pd
 import psycopg2
 
-def prep_data():
+def fetch_data():
     # Paramètres de connexion à la base de données
     dbname = 'interlend220228'
     user = 'postgres'
@@ -49,10 +49,10 @@ def prep_data():
                 pouvoirs = data["formality"]["content"]["personneMorale"].get("composition", {}).get("pouvoirs", [])
                 for pouvoir in pouvoirs:
                     if "individu" in pouvoir and "descriptionPersonne" in pouvoir["individu"]:
-                        nom = pouvoir["individu"]["descriptionPersonne"].get("nom", "Inconnu")
+                        nom = pouvoir["individu"]["descriptionPersonne"].get("nom", "Inconnu")[0]
                         prenoms_list = pouvoir["individu"]["descriptionPersonne"].get("prenoms", [])
                         prenoms = ", ".join([prenom[0] if isinstance(prenom, list) else prenom for prenom in prenoms_list])
-                        date_naissance = pouvoir["individu"]["descriptionPersonne"].get("dateDeNaissance", "Inconnue")
+                        date_naissance = pouvoir["individu"]["descriptionPersonne"].get("dateDeNaissance", "Inconnue")[0]
                         data_list.append({"siren": siren, "nom": nom, "prenoms": prenoms, "date_naissance": date_naissance})
     except Exception as e:
         print(f"Une erreur est survenue: {e}")
@@ -72,9 +72,5 @@ def prep_data():
     df.to_csv("rbe.csv", index=False)
 
 if __name__ == "__main__":
-    prep_data()
-    # with st.sidebar:
-    #     st.title("Bénéficiaires effectifs")
-    #     st.divider()
-    
-    # st.write("Placeholder")
+    fetch_data()
+
