@@ -62,5 +62,8 @@ ENV/
 # Log files
 *.log
 
-# RNE data files
+# Data files
+data_analysis_final/*.csv
+data_analysis_final/*.ipynb
 sample_data/rne_*
+*.sql

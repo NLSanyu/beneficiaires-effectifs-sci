@@ -1,32 +1,19 @@
-import sqlite3
-import os
-import numpy as np
-import pandas as pd
-import geopandas as gpd
-import contextily as ctx
-import matplotlib.pyplot as plt
-import matplotlib.colors as clrs
-#import matplotlib_scalebar.scalebar as mss
-#from mss import ScaleBar
-#from matplotlib_scalebar.scalebar import ScaleBar
-import seaborn as sns
-import datetime as dt
-# import pysal as ps
-import requests
-# from pandas import json_normalize
-# from fiona.crs import from_epsg
-import geopy
-# import dataframe_image as dfi
+"""
+Récupérez les données de la base de données et les mettre dans un csv
+"""
 
 import pandas as pd
 import psycopg2
 
 def fetch_data():
+    """
+    Récupérez les données de la base de données et les mettre dans un csv
+    """
     # Paramètres de connexion à la base de données
-    dbname = 'interlend220228'
-    user = 'postgres'
-    password = 'postgres'
-    host = 'localhost'
+    dbname = "interlend220228"
+    user = "postgres"
+    password = "postgres"
+    host = "localhost"
 
     # Initialiser une liste vide pour stocker les données extraites
     data_list = []
@@ -37,7 +24,7 @@ def fetch_data():
         cur = conn.cursor()
 
         # Sélectionner toutes les entrées de la table
-        cur.execute('SELECT siren, result FROM rne.siren_info')
+        cur.execute("SELECT siren, result FROM rne.siren_info")
 
         # Pour chaque entrée dans la base de données
         for row in cur.fetchall():
@@ -68,9 +55,18 @@ def fetch_data():
     # Afficher le DataFrame pour vérifier
     print(df.head())
 
+    # Créer une clé unique basée sur le nom, le premier prénom et la date de naissance
+    df["unique_key"] = df["nom"].str.upper() + "_" + df["prenoms"].str.split(pat=",").str[0] + "_" + df["date_naissance"]
+
+    # Convertir les colonnes "siren" et "unique_key" en type string
+    df["siren"] = df["siren"].astype(str)
+    df["unique_key"] = df["unique_key"].astype(str)
+
+    # Afficher le DataFrame pour vérifier
+    print(df.head())
+
     # Vous pouvez maintenant sauvegarder ce DataFrame dans un fichier CSV si nécessaire
     df.to_csv("rbe.csv", index=False)
 
 if __name__ == "__main__":
     fetch_data()
-
