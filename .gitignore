@@ -63,7 +63,7 @@ ENV/
 *.log
 
 # Data files
-data_analysis_final/*.csv
-data_analysis_final/*.ipynb
 sample_data/rne_*
+data_analysis/data
+data_analysis/*.ipynb
 *.sql
