@@ -17,7 +17,7 @@ def process_ubo_fixed(row):
             try:
                 dob_datetime = pd.to_datetime(dob, errors='coerce', format='%m/%Y')
                 dob_formatted = dob_datetime.strftime('%Y-%m') if pd.notnull(dob_datetime) else None
-            except:
+            except Exception:
                 dob_formatted = None
         else:
             dob_formatted = None
@@ -32,7 +32,7 @@ def fetch_data():
     """
     Récuperer les données du fichier csv et les filtrer par nom
     """
-    pappers_data = pd.read_csv("data/univ-avignon.csv")
+    pappers_data = pd.read_csv("data/pappers-univ-avignon.csv")
 
     # Apply the corrected function to each row and aggregate the results
     ubo_list_fixed = pappers_data.apply(process_ubo_fixed, axis=1).sum()  # Flatten the list of lists to a single list
@@ -51,5 +51,3 @@ def fetch_data():
     final_ubo_df_fixed.head()
 
     return final_ubo_df_fixed
-
-

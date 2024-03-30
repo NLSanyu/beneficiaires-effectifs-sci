@@ -16,7 +16,7 @@ logging.basicConfig(
 
 
 def fetch_data():
-    """Fetch data in from the EONET API"""
+    """Fetch data in from the INPI API"""
     RBE_API_BASE_URL = os.getenv("RBE_API_BASE_URL")
 
     api_endpoint = f"{RBE_API_BASE_URL}" # placeholder endpoint, base url

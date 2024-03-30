@@ -5,15 +5,17 @@ import pandas as pd
 import igraph as ig
 import matplotlib.pyplot as plt
 
-def fetch_and_filter_data(noms_pour_filtrer):
+def fetch_and_filter_data(names_to_filter):
     """
     Récuperer les données du fichier csv et les filtrer par nom
     """
-    data = pd.read_csv("data/rbe.csv")
+    data = pd.read_csv("data/inpi-rbe.csv")
 
-    filtered_data = data[data["nom"].isin(noms_pour_filtrer)]
+    if names_to_filter:
+        filtered_data = data[data["nom"].isin(names_to_filter)]
+        return filtered_data
 
-    return filtered_data
+    return data
 
 def plot_relationships(data):
     """

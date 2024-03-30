@@ -66,7 +66,7 @@ def fetch_data():
     print(df.head())
 
     # Vous pouvez maintenant sauvegarder ce DataFrame dans un fichier CSV si nécessaire
-    df.to_csv("data/rbe.csv", index=False)
+    df.to_csv("data/inpi-rbe.csv", index=False)
 
 if __name__ == "__main__":
     fetch_data()
