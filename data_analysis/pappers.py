@@ -6,6 +6,9 @@ import pandas as pd
 # Adjusting the date processing to match the provided format (MM/YYYY)
 
 def process_ubo_fixed(row):
+    """
+    Traiter les colonnes et ajuster les dates de naissance au format (MM/AAAA)
+    """
     ubo_data_fixed = []
     for i in range(1, 20):  # Handling up to UBO 20
         nom = row.get(f'UBO {i} - Nom')
@@ -30,7 +33,7 @@ def process_ubo_fixed(row):
 
 def fetch_data():
     """
-    Récuperer les données du fichier csv et les filtrer par nom
+    Récuperer les données du fichier csv
     """
     pappers_data = pd.read_csv("data/pappers-univ-avignon.csv")
 
