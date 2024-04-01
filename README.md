@@ -1,3 +1,3 @@
 ## Projet tutoré de recherche, M2 Gouvernance des Données
 
-Un projet de recherche sur les bénéficiaires effectifs des SCI (sociétés civiles immobilières).
+Notre projet universitaire, réalisé dans le cadre du Master 2 Gouvernance des Données, consiste à se concentrer sur l’identification des bénéficiaires effectifs des sociétés civiles immobilières (SCI) en utilisant des sources d’open data comme l’API de l’INPI. L’objectif de notre mission est de trouver une ou plusieurs stratégie(s)/procédure(s) efficace de collecte de l'information afin de déterminer les liens entre les personnes physiques au sein des SCI. Ensuite, nous allons ensuite croiser ses données avec la base de données des marchés publics pour identifier les liens entre les personnes des SCI et des marchés publics. Nous allons ensuite réaliser un compte rendu des contraintes techniques, réglementaires et de la qualité des résultats en sortie.

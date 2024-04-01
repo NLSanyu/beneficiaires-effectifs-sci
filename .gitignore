@@ -67,3 +67,4 @@ sample_data/rne_*
 data_analysis/data
 data_analysis/*.ipynb
 *.sql
+*.qgz
