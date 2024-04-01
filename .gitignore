@@ -65,6 +65,7 @@ ENV/
 # Data files
 sample_data/rne_*
 data_analysis/data
-data_analysis/*.ipynb
+data_analysis/trial.ipynb
+data_analysis/RBE.ipynb
 *.sql
 *.qgz
