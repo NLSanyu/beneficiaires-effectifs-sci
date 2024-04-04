@@ -44,6 +44,7 @@ st.dataframe(matches, use_container_width=True)
 st.divider()
 
 analyse = fetch_analysis_data()
+
 st.subheader("2. Les communes avec le plus grand nombre d'entreprises")
 nombre_de_communes = st.number_input("Choisissez un nombre de communes à afficher", min_value=2, max_value=20, value=10)
 val_count  = analyse["commune"].value_counts()[:nombre_de_communes]
@@ -54,9 +55,17 @@ st.pyplot(fig)
 
 st.divider()
 
-st.subheader("3. Les formes juridiques des entreprises")
+st.subheader("3. Les sociétés étrangères : y en a-t-il dans cette base de données?")
+fig, ax = plt.subplots(figsize=(15, 5))
+sns.countplot(data=analyse, x=analyse["societe_etrangere"])
+plt.xticks(rotation = 70)
+st.pyplot(fig)
+st.write("La reponse est non.")
+
+st.divider()
+
+st.subheader("4. Les formes juridiques des entreprises")
 fig, ax = plt.subplots(figsize=(15, 5))
 sns.countplot(data=analyse, x=analyse["forme_juridique"], order=analyse["forme_juridique"].value_counts().index)
 plt.xticks(rotation = 70)
-plt.title("...")
 st.pyplot(fig)
