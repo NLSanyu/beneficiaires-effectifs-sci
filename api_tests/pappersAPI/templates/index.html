@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    
+<div class="bg-white py-16 sm:py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-1xl text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+        <h2 class="inline sm:block">Identification des Bénéficiaires Effectifs</h2>
+      </div>
+      <form class="mt-10 max-w-md">
+        <div class="flex gap-x-4">
+          <label for="siren" class="sr-only">Numéro SIREN</label>
+          <input id="siren" name="siren" type="text" required class="min-w-0 flex-auto rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-300 sm:text-sm sm:leading-6" placeholder="Numéro SIREN">
+          <button type="submit" class="flex-none rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Rechercher</button>
+        </div>
+      </form>
+      
+
+      <div class="mt-10">
+        {%if erreur %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
+                <strong class="font-bold">Erreur :</strong>
+                <span class="block sm:inline">{{ erreur }}</span>
+            </div>
+
+        {% endif %}
+
+        {% if data %}
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-4">
+                <h2 class="block text-gray-700 text-lg font-bold mb-2">Résultats :</h2>
+                
+                {% for item in data %}
+                    <div class="mb-4">
+                        <!-- Remplacez 'key' par le nom de la propriété qu'on veut afficher -->
+                        <p>{{ item.key }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {%endif %}
+        
+      </div>
+    </div>
+</div>
+
+  
+{% endblock %}
