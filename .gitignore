@@ -63,6 +63,7 @@ ENV/
 *.log
 
 # Data files
+sample_data/
 data_analysis/data
 data_analysis/trial.ipynb
 data_analysis/RBE.ipynb
